@@ -1,0 +1,27 @@
+- nasm -f elf32 program.nasm -o program.o
+
+- ld program.o -o program
+
+gdb 
+
+	- set disassembly-flavor intel
+	- break _start
+	- run
+	- print /x $eax
+	- print /x &var
+	- continue
+	- define hook-stop
+		- print /x $eax
+		- print /x $ebx
+		- print /x $ecx
+		- print /x $edx
+		- x/8xb memory address
+		- disassemble $eip,+10
+	- end
+	- shell cat program.nasm
+	- quit
+
+
+
+- objdump -d binary -M intel
+
